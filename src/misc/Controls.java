@@ -39,6 +39,7 @@ public class Controls{
 	private Kata data_kata[];
 	private boolean nilai;
 	private GameScreen gameScreen;
+	private String level;
 	
 //	private static final int FOCUS_STATE = JComponent.WHEN_IN_FOCUSED_WINDOW;
 //	
@@ -66,6 +67,9 @@ public class Controls{
 	public JLabel textIng;
 	public JButton button;
 	public JButton button2;
+	public JButton button3;
+	public JButton lEasy;
+	public JButton lHard;
 	
 	private boolean isPressedUp = false;
 	private boolean isPressedDown = false;
@@ -81,6 +85,7 @@ public class Controls{
             ex.printStackTrace();
         }
 		
+		level = "Easy";
 		textIng = new JLabel("");
 		//setFont(font.deriveFont(Font.BOLD, 48f));
 		button = new JButton("Mulai");
@@ -95,7 +100,17 @@ public class Controls{
 		this.nilai = false;
 		this.gameScreen = gamescreen;
 		
+		button3 = new JButton("Level");
+		button3.addActionListener (new Action3());
+		button3.setPreferredSize(new Dimension(100, 40));
 		
+		lEasy = new JButton("Mudah");
+		lEasy.addActionListener (new Action3());
+		lEasy.setPreferredSize(new Dimension(100, 40));
+		
+		lHard = new JButton("Susah");
+		lHard.addActionListener (new Action3());
+		lHard.setPreferredSize(new Dimension(100, 40));
 
 		
 	}
@@ -173,12 +188,17 @@ public class Controls{
 	class Action1 implements ActionListener {        
 		  public void actionPerformed (ActionEvent e) {     
 			if (e.getActionCommand().equals("Mulai")) {
-				gameScreen.addButton();
+				gameScreen.rButton(button3);
+				gameScreen.rButton(lEasy);
+				gameScreen.rButton(lHard);
+				gameScreen.addButton(button2);
+				gameScreen.addLabel(textIng);
 				UpdateTombol();
 				gameScreen.releaseUpAction();
 			}
 			else if (e.getActionCommand().equals("Mulai Lagi")) {
-				gameScreen.addButton();
+				gameScreen.addButton(button2);
+				gameScreen.addLabel(textIng);
 				UpdateTombol();
 				gameScreen.releaseUpAction();
 			}
@@ -204,10 +224,39 @@ public class Controls{
 		    else {
 		    	setNilai(false);
 			}
+//		    if (e.getActionCommand().equals("Main Menu")) {
+//		    	System.out.println("MAIN MENU");
+//		    	gameScreen.setGameState(GameState.GAME_STATE_INTRO);
+//		    }
 			
 		  }
 		  
 	}
+	
+	class Action3 implements ActionListener{
+		public void actionPerformed (ActionEvent e) {
+			if(e.getActionCommand().equals("Level")) {
+				System.out.println("Masuk");
+				gameScreen.addButton(lEasy);
+				gameScreen.addButton(lHard);
+				lEasy.setText("Easy");
+				lHard.setText("Hard");
+//				UpdateTombol();
+//				gameScreen.setGameState(GameState.GAME_STATE_START);
+			}
+			else if(e.getActionCommand().equals("Easy")) {
+				gameScreen.rButton(lEasy);
+				gameScreen.rButton(lHard);
+				level = "Easy";
+			}
+			else if(e.getActionCommand().equals("Hard")) {
+				gameScreen.rButton(lEasy);
+				gameScreen.rButton(lHard);
+				level = "Expert";
+			}
+		}
+	}
+	
 	
 	
 	public void UpdateTombol() {
@@ -216,8 +265,6 @@ public class Controls{
 		
 		Kata kataBing = data_kata[index_ing];
 		Kata kataKecoh = data_kata[index_kecoh];
-//		String level = "Expert";
-		String level = "Easy";
 		
 		
 		String bing = kataBing.getKata_inggris();
@@ -228,6 +275,7 @@ public class Controls{
 
 	}
 	
+	
 	public void setNilai(boolean inpNilai) {
 		this.nilai = inpNilai;
 	}
@@ -236,8 +284,8 @@ public class Controls{
 		return this.nilai;
 	}
 	
-	public void setButtonGO() {
-		this.button.setText("Mulai Lagi");
+	public void setButton(JButton button, String text) {
+		button.setText(text);
 	}
 	
 	public boolean isPressedUp() {

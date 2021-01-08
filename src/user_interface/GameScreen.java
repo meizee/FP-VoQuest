@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game_object.Dino;
@@ -75,6 +76,7 @@ public class GameScreen extends JPanel implements Runnable {
 		gameOverSound = new SoundManager("resources/dead.wav");
 		gameOverSound.startThread();
 		add(controls.button);
+		add(controls.button3);
 		
 	}
 	
@@ -105,7 +107,8 @@ public class GameScreen extends JPanel implements Runnable {
 			SoundManager.WAITING_TIME = waitingTime;
 			// little pause to not start new game if you are spamming your keys
 			if(gameState == GameState.GAME_STATE_OVER) {
-				controls.setButtonGO();
+				controls.setButton(controls.button, "Mulai Lagi");
+//				controls.setButton(controls.button2, "Main Menu");
 				remove(controls.button2);
 				remove(controls.textIng);
 				waitingTime = 1000;
@@ -126,6 +129,10 @@ public class GameScreen extends JPanel implements Runnable {
 
 	public GameState getGameState() {
 		return gameState;
+	}
+	
+	public void setGameState(GameState state) {
+		this.gameState = state;
 	}
 
 	// update all entities positions
@@ -200,7 +207,7 @@ public class GameScreen extends JPanel implements Runnable {
 //		g.drawString(speedInfo, (int)(SCREEN_WIDTH / 100), (int)(SCREEN_HEIGHT / 25));
 //	}
 	
-	private void startScreen(Graphics g) {
+	public void startScreen(Graphics g) {
 		land.draw(g);
 		dino.draw(g);
 		BufferedImage introImage = getImage("resources/intro-text.png");
@@ -290,9 +297,16 @@ public class GameScreen extends JPanel implements Runnable {
 //			gameState = GameState.GAME_STATE_IN_PROGRESS;
 //	}
 	
-	public void addButton() {
-		add(controls.button2);
-		add(controls.textIng);
+	public void addButton(JButton button) {
+		add(button);
+	}
+	
+	public void addLabel(JLabel label) {
+		add(label);
+	}
+	
+	public void rButton(JButton button) {
+		remove(button);
 	}
 	
 }
