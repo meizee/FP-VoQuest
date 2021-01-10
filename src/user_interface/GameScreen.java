@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game_object.Karakter;
-import game_object.Land;
+import game_object.Tanah;
 import game_object.Score;
 import manager.ManajerKontrol;
 import manager.ManajerBatuan;
@@ -50,7 +50,7 @@ public class GameScreen extends JPanel implements Runnable {
 	private Kontrol kontrol;
 	private Score score;
 	private Karakter karakter;
-	private Land land;
+	private Tanah tanah;
 	//private Clouds clouds;
 	private ManajerBatuan eManager;
 	private SoundManager gameOverSound;
@@ -64,7 +64,7 @@ public class GameScreen extends JPanel implements Runnable {
 		cManager = new ManajerKontrol(kontrol, this);
 		score = new Score(this);
 		karakter = new Karakter(kontrol);
-		land = new Land(this);
+		tanah = new Tanah(this);
 
 		eManager = new ManajerBatuan(this);
 		gameOverSound = new SoundManager("resources/dead.wav");
@@ -143,7 +143,7 @@ public class GameScreen extends JPanel implements Runnable {
 		case GAME_STATE_INTRO:
 			karakter.updatePosition();
 			if(!introJump && karakter.getKarakterState() == KarakterState.KARAKTER_LARI)
-				land.updatePosition();
+				tanah.updatePosition();
 			
 			introCountdown += speedX;
 			if(introCountdown <= 0)
@@ -158,7 +158,7 @@ public class GameScreen extends JPanel implements Runnable {
 		case GAME_STATE_IN_PROGRESS:
 			speedX += DIFFICULTY_INC;
 			karakter.updatePosition();
-			land.updatePosition();
+			tanah.updatePosition();
 			//clouds.updatePosition();
 			eManager.updatePosisi();
 			if(collisions && eManager.isCollision(karakter.getHitbox())) {
@@ -203,7 +203,7 @@ public class GameScreen extends JPanel implements Runnable {
 
 	
 	public void startScreen(Graphics g) {
-		land.draw(g);
+		tanah.draw(g);
 		karakter.draw(g);
 		BufferedImage introImage = getImage("resources/intro-text.png");
 		Graphics2D g2d = (Graphics2D)g;
@@ -217,7 +217,7 @@ public class GameScreen extends JPanel implements Runnable {
 	}
 	
 	private void inProgressScreen(Graphics g) {
-		land.draw(g);
+		tanah.draw(g);
 		eManager.draw(g);
 		karakter.draw(g);
 		score.draw(g);
@@ -251,7 +251,7 @@ public class GameScreen extends JPanel implements Runnable {
 			score.scoreReset();
 			eManager.clearBatuan();
 			karakter.resetKarakter();
-			land.resetLand();
+			tanah.resetTanah();
 			gameState = GameState.GAME_STATE_IN_PROGRESS;
 		}
 	}
