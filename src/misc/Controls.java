@@ -191,6 +191,7 @@ public class Controls{
 				gameScreen.releaseUpAction();
 			}
 			else if (e.getActionCommand().equals("Mulai Lagi")) {
+				gameScreen.rButton(button3);
 				gameScreen.rButton(button);
 				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
 				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);

@@ -109,6 +109,7 @@ public class GameScreen extends JPanel implements Runnable {
 			if(gameState == GameState.GAME_STATE_OVER) {
 				controls.button.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
 				controls.setButton(controls.button, "Mulai Lagi");
+				add(controls.button3);
 //				controls.setButton(controls.button2, "Main Menu");
 				remove(controls.button2);
 				remove(controls.textIng);
