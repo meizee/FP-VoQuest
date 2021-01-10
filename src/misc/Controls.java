@@ -126,11 +126,13 @@ public class Controls{
 		String noise[] = {"Kebisingan", "Suara", "Bunyi", "Keributan", "Kegaduhan"};
 		String sanity[] = {"Kewarasan", "Kesehatan", "Kesehatan jiwa", "Kesegaran"};
 		String lizard[] = {"Cicak", "Kadal"};
+		String bridge[] = {"Jembatan", "Batang", "Kuda-kuda", "Titian"};
 		//String chick[]
 		Kata kata[] = {
 				new Kata("Noise", noise),
 				new Kata("Sanity", sanity),
-				new Kata("Lizard", lizard)
+				new Kata("Lizard", lizard),
+				new Kata("Bridge", bridge)
 		};
 		
 		return kata;
