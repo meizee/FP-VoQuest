@@ -1,4 +1,2 @@
-
-result=22,date=20210110_161816,player=User-1
-result=22,date=20210110_161820,player=User-1
-result=26,date=20210110_184439,player=Dino
+result=62,date=20210110_185035,player=User-1
+result=89,date=20210110_190905,player=User-1
