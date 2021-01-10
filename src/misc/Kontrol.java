@@ -3,21 +3,19 @@ package misc;
 import static user_interface.GameWindow.SCREEN_HEIGHT;
 import static user_interface.GameWindow.SCREEN_WIDTH;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.InputStream;
-import javax.swing.*;
-import user_interface.GameScreen;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import user_interface.GameScreen;
 
-
-public class Controls{
-    
-	
+public class Kontrol {
 	private int jawBenar;
 //	private JFrame frame;
 //	public JPanel panel;
@@ -28,14 +26,8 @@ public class Controls{
 	
 
 	
-//	public JLabel pressUp = new JLabel();
-//	public JLabel releaseUp = new JLabel();
-//	public JLabel pressDown = new JLabel();
-//	public JLabel releaseDown = new JLabel();
-//	public JLabel pressDebug = new JLabel();
-//	public JLabel pressPause = new JLabel();
-	
-	public JLabel levelLabel;
+	public JLabel pressUp = new JLabel();
+
 	public JLabel textIng;
 	public JButton button;
 	public JButton button2;
@@ -43,23 +35,24 @@ public class Controls{
 	public JButton lEasy;
 	public JButton lHard;
 	public Font font;
+	public JLabel levelLabel;
 	
 	private boolean isPressedUp = false;
 	private boolean isPressedDown = false;
 	
 
 		
-	public Controls(JFrame jframe, GameScreen gamescreen) throws Exception {
+	public Kontrol(JFrame jframe, GameScreen gamescreen) throws Exception {
 		
 //		
 		//font body
 		String fName = "/Raleway-VariableFont_wght.ttf";
-	    InputStream is = Controls.class.getResourceAsStream(fName);
+	    InputStream is = Kontrol.class.getResourceAsStream(fName);
 	    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
 	    
 	    //font textIng
 	    String fName2 = "/OpenSans-SemiBold.ttf";
-	    InputStream is2 = Controls.class.getResourceAsStream(fName2);
+	    InputStream is2 = Kontrol.class.getResourceAsStream(fName2);
 	    Font font2 = Font.createFont(Font.TRUETYPE_FONT, is2);
 	    
 	    //image
@@ -69,8 +62,6 @@ public class Controls{
 		textIng = new JLabel("");
 		textIng.setFont(font2.deriveFont(Font.BOLD, 30f));
 		
-		levelLabel = new JLabel("Level: " + this.level);
-		levelLabel.setFont(font2.deriveFont(Font.BOLD, 30f));
 		
 		button = new JButton("Mulai");
 		button.setVerticalTextPosition(JButton.CENTER);
@@ -118,6 +109,9 @@ public class Controls{
 //		lHard.setContentAreaFilled(false);
 		lHard.addActionListener (new Action3());
 		//lHard.setPreferredSize(new Dimension(240, 60));
+		
+		levelLabel = new JLabel("Level: " + this.level);
+		levelLabel.setFont(font2.deriveFont(Font.BOLD, 30f));
 
 		
 	}
@@ -197,10 +191,10 @@ public class Controls{
 				gameScreen.releaseUpAction();
 			}
 			else if (e.getActionCommand().equals("Mulai Lagi")) {
+				gameScreen.rButton(button);
 				gameScreen.rButton(button3);
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
-				gameScreen.rButton(button);
 				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
 				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);
 				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 200, 50);
@@ -304,25 +298,4 @@ public class Controls{
 	public boolean isPressedDown() {
 		return isPressedDown;
 	}
-
-//	private class PressUpAction extends AbstractAction {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-////			System.out.println("up");
-//			isPressedUp = true;
-//		}
-//	}
-//	
-//	private class ReleaseUpAction extends AbstractAction {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-////			System.out.println("released up");
-//			gameScreen.releaseUpAction();
-//			isPressedUp = false;
-//		}
-//	}
-	
-
-	
-
 }
