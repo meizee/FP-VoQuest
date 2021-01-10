@@ -28,12 +28,14 @@ public class Controls{
 	
 
 	
-	public JLabel pressUp = new JLabel();
-	public JLabel releaseUp = new JLabel();
-	public JLabel pressDown = new JLabel();
-	public JLabel releaseDown = new JLabel();
-	public JLabel pressDebug = new JLabel();
-	public JLabel pressPause = new JLabel();
+//	public JLabel pressUp = new JLabel();
+//	public JLabel releaseUp = new JLabel();
+//	public JLabel pressDown = new JLabel();
+//	public JLabel releaseDown = new JLabel();
+//	public JLabel pressDebug = new JLabel();
+//	public JLabel pressPause = new JLabel();
+	
+	public JLabel levelLabel;
 	public JLabel textIng;
 	public JButton button;
 	public JButton button2;
@@ -67,6 +69,8 @@ public class Controls{
 		textIng = new JLabel("");
 		textIng.setFont(font2.deriveFont(Font.BOLD, 30f));
 		
+		levelLabel = new JLabel("Level: " + this.level);
+		levelLabel.setFont(font2.deriveFont(Font.BOLD, 30f));
 		
 		button = new JButton("Mulai");
 		button.setVerticalTextPosition(JButton.CENTER);
@@ -192,6 +196,8 @@ public class Controls{
 			}
 			else if (e.getActionCommand().equals("Mulai Lagi")) {
 				gameScreen.rButton(button3);
+				gameScreen.rButton(lEasy);
+				gameScreen.rButton(lHard);
 				gameScreen.rButton(button);
 				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
 				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);
@@ -243,13 +249,15 @@ public class Controls{
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
 				level = "Easy";
+				levelLabel.setText("Level: " + level);
 				gameScreen.addButton(button, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
 				gameScreen.addButton(button3, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3 + 80, 240, 60);
 			}
 			else if(e.getActionCommand().equals("Hard")) {
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
-				level = "Expert";
+				level = "Hard";
+				levelLabel.setText("Level: " + level);
 				gameScreen.addButton(button, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
 				gameScreen.addButton(button3, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3 + 80, 240, 60);
 			}

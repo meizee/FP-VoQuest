@@ -59,7 +59,7 @@ public class GameScreen extends JPanel implements Runnable {
 	public GameScreen(JFrame jframe) throws Exception {
 		thread = new Thread(this);
 		controls = new Controls(jframe, this);
-		super.add(controls.pressUp);
+//		super.add(controls.pressUp);
 
 		cManager = new ControlsManager(controls, this);
 		score = new Score(this);
@@ -77,6 +77,7 @@ public class GameScreen extends JPanel implements Runnable {
 		add(controls.button);
 
 		add(controls.button3);
+		addLabel(controls.levelLabel, 5, 5, 200, 50);
 		
 	}
 	
