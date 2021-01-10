@@ -97,7 +97,7 @@ public class Score {
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 				// just format of results, storing here result, date, player, where player is just Dino because i dont have any friends.....
 				bw.write(String.format("result=%s,date=%s,player=%s\n", Integer.toString((int)score), new SimpleDateFormat("yyyyMMdd_HHmmss")
-						.format(Calendar.getInstance().getTime()), "Dino"));
+						.format(Calendar.getInstance().getTime()), "User-1"));
 				bw.close();
 			} catch (IOException e) {
 				e.printStackTrace();
