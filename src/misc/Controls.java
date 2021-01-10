@@ -1,37 +1,22 @@
 package misc;
 
+import static user_interface.GameWindow.SCREEN_HEIGHT;
+import static user_interface.GameWindow.SCREEN_WIDTH;
 
-import java.awt.Dimension;
+
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-
+import java.io.InputStream;
 import javax.swing.*;
 import user_interface.GameScreen;
-import user_interface.GameWindow;
-//import misc.TestCustomFont.TestPane;
-
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagLayout;
-import java.io.File;
-import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+
 
 
 public class Controls{
+    
 	
 	private int jawBenar;
 //	private JFrame frame;
@@ -41,22 +26,7 @@ public class Controls{
 	private GameScreen gameScreen;
 	private String level;
 	
-//	private static final int FOCUS_STATE = JComponent.WHEN_IN_FOCUSED_WINDOW;
-//	
-//	private static final String UP = "UP";
-//	private static final String DOWN = "DOWN";
-//	private static final String W_UP = "W_UP";
-//	private static final String S_DOWN = "S_DOWN";
-//	private static final String SPACE_UP = "SPACE_UP";
-//	private static final String DEBUG_MENU = "DEBUG_MENU";
-//	private static final String P_PAUSE = "P";
-//	private static final String ESCAPE_PAUSE = "ESCAPE";
-//	
-//	private static final String RELEASED_UP = "RELEASED_UP";
-//	private static final String RELEASED_DOWN = "RELEASED_DOWN";
-//	private static final String RELEASED_W_UP = "RELEASED_W_UP";
-//	private static final String RELEASED_S_DOWN = "RELEASED_S_DOWN";
-//	private static final String RELEASED_SPACE_UP = "RELEASED_SPACE_UP";
+
 	
 	public JLabel pressUp = new JLabel();
 	public JLabel releaseUp = new JLabel();
@@ -70,62 +40,83 @@ public class Controls{
 	public JButton button3;
 	public JButton lEasy;
 	public JButton lHard;
+	public Font font;
 	
 	private boolean isPressedUp = false;
 	private boolean isPressedDown = false;
+	
+
 		
-	public Controls(JFrame jframe, GameScreen gamescreen) {
+	public Controls(JFrame jframe, GameScreen gamescreen) throws Exception {
 		
-		try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Raleway-VariableFont_wght.ttf"));
-            //JLabel happy = new JLabel("Happy little Miss Chicken");
-            //happy.setFont(font.deriveFont(Font.BOLD, 48f));
-            //add(happy);
-        } catch (FontFormatException | IOException ex) {
-            ex.printStackTrace();
-        }
+//		
+		//font body
+		String fName = "/Raleway-VariableFont_wght.ttf";
+	    InputStream is = Controls.class.getResourceAsStream(fName);
+	    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+	    
+	    //font textIng
+	    String fName2 = "/OpenSans-SemiBold.ttf";
+	    InputStream is2 = Controls.class.getResourceAsStream(fName2);
+	    Font font2 = Font.createFont(Font.TRUETYPE_FONT, is2);
+	    
+	    //image
+	    ImageIcon imageForOne = new ImageIcon(getClass().getResource("/buttons.png"));
 		
 		level = "Easy";
 		textIng = new JLabel("");
-		//setFont(font.deriveFont(Font.BOLD, 48f));
+		textIng.setFont(font2.deriveFont(Font.BOLD, 30f));
+		
+		
 		button = new JButton("Mulai");
-		//button.setFont(font.deriveFont(Font.BOLD, 48f));
+		button.setVerticalTextPosition(JButton.CENTER);
+		button.setHorizontalTextPosition(JButton.CENTER);
+//		button.setBorderPainted(false);
+//		button.setContentAreaFilled(false);
+		button.setFont(font2.deriveFont(Font.BOLD, 20f));
 		button.addActionListener (new Action1());
-		button.setPreferredSize(new Dimension(100, 40));
+		//button.setPreferredSize(new Dimension(240, 60));
 		
 		button2 = new JButton("");
+		button2.setVerticalTextPosition(JButton.CENTER);
+		button2.setHorizontalTextPosition(JButton.CENTER);
+//		button2.setBorderPainted(false);
+//		button2.setContentAreaFilled(false);
+		button2.setFont(font2.deriveFont(Font.BOLD, 20f));
 		button2.addActionListener (new Action2());
-		button2.setPreferredSize(new Dimension(100, 40));
+		//button2.setPreferredSize(new Dimension(240, 60));
+		
 		this.data_kata = makeData();
 		this.nilai = false;
 		this.gameScreen = gamescreen;
 		
 		button3 = new JButton("Level");
+		button3.setVerticalTextPosition(JButton.CENTER);
+		button3.setHorizontalTextPosition(JButton.CENTER);
+//		button3.setBorderPainted(false);
+//		button3.setContentAreaFilled(false);
+		button3.setFont(font2.deriveFont(Font.BOLD, 20f));
 		button3.addActionListener (new Action3());
-		button3.setPreferredSize(new Dimension(100, 40));
+		//button3.setPreferredSize(new Dimension(240, 60));
 		
 		lEasy = new JButton("Mudah");
+		lEasy.setVerticalTextPosition(JButton.CENTER);
+		lEasy.setHorizontalTextPosition(JButton.CENTER);
+//		lEasy.setBorderPainted(false);
+//		lEasy.setContentAreaFilled(false);
 		lEasy.addActionListener (new Action3());
-		lEasy.setPreferredSize(new Dimension(100, 40));
+		//lEasy.setPreferredSize(new Dimension(240, 60));
 		
 		lHard = new JButton("Susah");
+		lHard.setVerticalTextPosition(JButton.CENTER);
+		lHard.setHorizontalTextPosition(JButton.CENTER);
+//		lHard.setBorderPainted(false);
+//		lHard.setContentAreaFilled(false);
 		lHard.addActionListener (new Action3());
-		lHard.setPreferredSize(new Dimension(100, 40));
+		//lHard.setPreferredSize(new Dimension(240, 60));
 
 		
 	}
-	
-//	public void TestPane() {
-//        //setLayout(new GridBagLayout());
-//        try {
-//            Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/Raleway-VariableFont_wght.ttf"));
-//            //JLabel happy = new JLabel("Happy little Miss Chicken");
-//            //happy.setFont(font.deriveFont(Font.BOLD, 48f));
-//            //add(happy);
-//        } catch (FontFormatException | IOException ex) {
-//            ex.printStackTrace();
-//        }
-//    }
 	
 	public Kata[] makeData() {
 		String noise[] = {"Kebisingan", "Suara", "Bunyi", "Keributan", "Kegaduhan"};
@@ -186,19 +177,24 @@ public class Controls{
 	}
 	
 	class Action1 implements ActionListener {        
-		  public void actionPerformed (ActionEvent e) {     
+		  public void actionPerformed (ActionEvent e) {    
+			  
 			if (e.getActionCommand().equals("Mulai")) {
 				gameScreen.rButton(button3);
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
-				gameScreen.addButton(button2);
-				gameScreen.addLabel(textIng);
+				gameScreen.rButton(button);
+				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
+				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);
+				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 200, 50);
 				UpdateTombol();
 				gameScreen.releaseUpAction();
 			}
 			else if (e.getActionCommand().equals("Mulai Lagi")) {
-				gameScreen.addButton(button2);
-				gameScreen.addLabel(textIng);
+				gameScreen.rButton(button);
+				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
+				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);
+				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 200, 50);
 				UpdateTombol();
 				gameScreen.releaseUpAction();
 			}
@@ -224,10 +220,7 @@ public class Controls{
 		    else {
 		    	setNilai(false);
 			}
-//		    if (e.getActionCommand().equals("Main Menu")) {
-//		    	System.out.println("MAIN MENU");
-//		    	gameScreen.setGameState(GameState.GAME_STATE_INTRO);
-//		    }
+//		   
 			
 		  }
 		  
@@ -237,22 +230,27 @@ public class Controls{
 		public void actionPerformed (ActionEvent e) {
 			if(e.getActionCommand().equals("Level")) {
 				System.out.println("Masuk");
-				gameScreen.addButton(lEasy);
-				gameScreen.addButton(lHard);
+				gameScreen.rButton(button);
+				gameScreen.rButton(button3);
+				gameScreen.addButton(lEasy,  SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addButton(lHard, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3 + 80, 240, 60);
 				lEasy.setText("Easy");
 				lHard.setText("Hard");
-//				UpdateTombol();
-//				gameScreen.setGameState(GameState.GAME_STATE_START);
+//				
 			}
 			else if(e.getActionCommand().equals("Easy")) {
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
 				level = "Easy";
+				gameScreen.addButton(button, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addButton(button3, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3 + 80, 240, 60);
 			}
 			else if(e.getActionCommand().equals("Hard")) {
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
 				level = "Expert";
+				gameScreen.addButton(button, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addButton(button3, SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3 + 80, 240, 60);
 			}
 		}
 	}
@@ -296,55 +294,24 @@ public class Controls{
 		return isPressedDown;
 	}
 
-	private class PressUpAction extends AbstractAction {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-//			System.out.println("up");
-			isPressedUp = true;
-		}
-	}
+//	private class PressUpAction extends AbstractAction {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+////			System.out.println("up");
+//			isPressedUp = true;
+//		}
+//	}
+//	
+//	private class ReleaseUpAction extends AbstractAction {
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+////			System.out.println("released up");
+//			gameScreen.releaseUpAction();
+//			isPressedUp = false;
+//		}
+//	}
 	
-	private class ReleaseUpAction extends AbstractAction {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-//			System.out.println("released up");
-			gameScreen.releaseUpAction();
-			isPressedUp = false;
-		}
-	}
-	
-//	private class PressDownAction extends AbstractAction {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-////			System.out.println("down");
-//			isPressedDown = true;
-//		}
-//	}
-//	
-//	private class ReleaseDownAction extends AbstractAction {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-////			System.out.println("released down");
-//			gameScreen.releaseDownAction();
-//			isPressedDown = false;
-//		}
-//	}
-//	
-//	private class PressDebugAction extends AbstractAction {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-////			System.out.println("press debug");
-//			gameScreen.pressDebugAction();
-//		}
-//	}
-//	
-//	private class PressPauseAction extends AbstractAction {
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-////			System.out.println("press pause");
-//			gameScreen.pressPauseAction();
-//		}
-//	}
+
 	
 
 }

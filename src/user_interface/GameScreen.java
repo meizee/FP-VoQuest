@@ -56,26 +56,26 @@ public class GameScreen extends JPanel implements Runnable {
 	private SoundManager gameOverSound;
 	private ControlsManager cManager;;
 	
-	public GameScreen(JFrame jframe) {
+	public GameScreen(JFrame jframe) throws Exception {
 		thread = new Thread(this);
 		controls = new Controls(jframe, this);
 		super.add(controls.pressUp);
-		super.add(controls.releaseUp);
-//		super.add(controls.pressDown);
-//		super.add(controls.releaseDown);
-//		super.add(controls.pressDebug);
-//		super.add(controls.releaseDebug);
-//		super.add(controls.pressPause);
-//		super.add(controls.releaseP);
+
 		cManager = new ControlsManager(controls, this);
 		score = new Score(this);
 		dino = new Dino(controls);
 		land = new Land(this);
-		//clouds = new Clouds(this);
+
 		eManager = new EnemyManager(this);
 		gameOverSound = new SoundManager("resources/dead.wav");
 		gameOverSound.startThread();
+		setLayout(null);
+		controls.button.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
+		controls.button3.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3 + 80, 240, 60);
+		
+		
 		add(controls.button);
+
 		add(controls.button3);
 		
 	}
@@ -107,6 +107,7 @@ public class GameScreen extends JPanel implements Runnable {
 			SoundManager.WAITING_TIME = waitingTime;
 			// little pause to not start new game if you are spamming your keys
 			if(gameState == GameState.GAME_STATE_OVER) {
+				controls.button.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
 				controls.setButton(controls.button, "Mulai Lagi");
 //				controls.setButton(controls.button2, "Main Menu");
 				remove(controls.button2);
@@ -142,7 +143,7 @@ public class GameScreen extends JPanel implements Runnable {
 			dino.updatePosition();
 			if(!introJump && dino.getDinoState() == DinoState.DINO_RUN)
 				land.updatePosition();
-			//clouds.updatePosition();
+			
 			introCountdown += speedX;
 			if(introCountdown <= 0)
 				gameState = GameState.GAME_STATE_IN_PROGRESS;
@@ -152,6 +153,7 @@ public class GameScreen extends JPanel implements Runnable {
 				introJump = false;
 			}
 			break;
+			
 		case GAME_STATE_IN_PROGRESS:
 			speedX += DIFFICULTY_INC;
 			dino.updatePosition();
@@ -210,12 +212,12 @@ public class GameScreen extends JPanel implements Runnable {
 	public void startScreen(Graphics g) {
 		land.draw(g);
 		dino.draw(g);
+		
+		
 		BufferedImage introImage = getImage("resources/intro-text.png");
-//		double pictWidthScaled = introImage.getWidth() * 2;
-//		double pictHeightScaled = introImage.getHeight() * 2;
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, introCountdown / 1000f));
-		g2d.drawImage(introImage, SCREEN_WIDTH / 2 - introImage.getWidth() / 2, SCREEN_HEIGHT / 2 - introImage.getHeight(),  null);
+		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, introCountdown / 1000f));		
+		g2d.drawImage(introImage, SCREEN_WIDTH / 2 - introImage.getWidth() / 2, SCREEN_HEIGHT / 4 - introImage.getHeight(), null);
 		g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 	}
 	
@@ -237,9 +239,9 @@ public class GameScreen extends JPanel implements Runnable {
 	private void gameOverScreen(Graphics g) {
 		inProgressScreen(g);
 		BufferedImage gameOverImage = getImage("resources/game-over.png");
-		BufferedImage replayImage = getImage("resources/replay.png");
-		g.drawImage(gameOverImage, SCREEN_WIDTH / 2 - gameOverImage.getWidth() / 2, SCREEN_HEIGHT / 2 - gameOverImage.getHeight() * 2, null);
-		g.drawImage(replayImage, SCREEN_WIDTH / 2 - replayImage.getWidth() / 2, SCREEN_HEIGHT / 2, null);
+		//BufferedImage replayImage = getImage("resources/replay.png");
+		g.drawImage(gameOverImage, SCREEN_WIDTH / 2 - gameOverImage.getWidth() / 2, SCREEN_HEIGHT / 2 - gameOverImage.getHeight() * 5/2, null);
+		//g.drawImage(replayImage, SCREEN_WIDTH / 2 - replayImage.getWidth() / 2, SCREEN_HEIGHT / 2, null);
 	}
 	
 	private void pausedScreen(Graphics g) {
@@ -269,39 +271,14 @@ public class GameScreen extends JPanel implements Runnable {
 		}
 	}
 	
-//	public void pressDownAction() {
-//		if(dino.getDinoState() != DinoState.DINO_JUMP && gameState == GameState.GAME_STATE_IN_PROGRESS)
-//			dino.setDinoState(DinoState.DINO_DOWN_RUN);
-//	}
-	
-//	public void releaseDownAction() {
-//		if(dino.getDinoState() != DinoState.DINO_JUMP && gameState == GameState.GAME_STATE_IN_PROGRESS)
-//			dino.setDinoState(DinoState.DINO_RUN);
-//	}
-	
-//	public void pressDebugAction() {
-//		if(showHitboxes == false)
-//			showHitboxes = true;
-//		else
-//			showHitboxes = false;
-//		if(collisions == true)
-//			collisions = false;
-//		else
-//			collisions = true;
-//	}
-//	
-//	public void pressPauseAction() {
-//		if(gameState == GameState.GAME_STATE_IN_PROGRESS)
-//			gameState = GameState.GAME_STATE_PAUSED;
-//		else
-//			gameState = GameState.GAME_STATE_IN_PROGRESS;
-//	}
-	
-	public void addButton(JButton button) {
+	public void addButton(JButton button, int x, int y, int width, int height) {
+		button.setBounds(x, y, width, height);
 		add(button);
 	}
 	
-	public void addLabel(JLabel label) {
+	public void addLabel(JLabel label, int x, int y, int width, int height) {
+		label.setBounds(x, y, width, height);
+		label.setBackground(Color.GRAY);
 		add(label);
 	}
 	

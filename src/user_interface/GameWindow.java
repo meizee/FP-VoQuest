@@ -9,7 +9,7 @@ public class GameWindow extends JFrame {
 
 	private GameScreen gameScreen;
 	
-	public GameWindow() {
+	public GameWindow() throws Exception {
 		super("Dino");
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setResizable(false);
@@ -28,9 +28,16 @@ public class GameWindow extends JFrame {
 		
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 		      public void run() {
-					GameWindow gameWindow = new GameWindow();
-					gameWindow.startGame();
-					gameWindow.setVisible(true);
+					GameWindow gameWindow;
+					try {
+						gameWindow = new GameWindow();
+						gameWindow.startGame();
+						gameWindow.setVisible(true);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 		      }
 		});
 	
