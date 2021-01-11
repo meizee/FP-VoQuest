@@ -161,10 +161,7 @@ public class Kontrol {
 		String dua = "";
 		jawBenar = acak;
 		
-		textIng.setText(kataInggris);
-		
-		System.out.println("Masuk arti");
-		
+		textIng.setText(kataInggris);		
 		if (acak==1) {
 			satu = arti;
 			dua = kecoh;
