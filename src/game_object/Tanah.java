@@ -21,7 +21,7 @@ public class Tanah {
 	public Tanah(GameScreen gameScreen) {
 		this.gameScreen = gameScreen;
 		tanah = getImage("resources/3.png");
-		y = SCREEN_HEIGHT - tanah.getHeight() - 5;
+		y = SCREEN_HEIGHT - tanah.getHeight() - 4;
 		tanahWidthScaled = tanah.getWidth();
 		tanahHeightScaled = tanah.getHeight();
 	}
@@ -37,10 +37,10 @@ public class Tanah {
 	
 	public void draw(Graphics g) {
 		g.drawImage(tanah, (int)x, y, tanahWidthScaled, tanahHeightScaled, null);
-		// drawing another tanah if image is ending
+		
 		if(tanahWidthScaled - SCREEN_WIDTH <= (int)Math.abs(x))
 			g.drawImage(tanah, (int)(tanahWidthScaled + x), y, tanahWidthScaled, tanahHeightScaled, null);
-		// if tanah out of screen set it to 0
+		
 		if(tanahWidthScaled <= (int)Math.abs(x))
 			x = 0;
 	}

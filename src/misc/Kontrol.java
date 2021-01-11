@@ -45,10 +45,10 @@ public class Kontrol {
 	public Kontrol(JFrame jframe, GameScreen gamescreen) throws Exception {
 		
 //		
-		//font body
-		String fName = "/Raleway-VariableFont_wght.ttf";
-	    InputStream is = Kontrol.class.getResourceAsStream(fName);
-	    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
+		//font
+		//String fName = "/Raleway-VariableFont_wght.ttf";
+	    //InputStream is = Kontrol.class.getResourceAsStream(fName);
+//	    Font font = Font.createFont(Font.TRUETYPE_FONT, is);
 	    
 	    //font textIng
 	    String fName2 = "/OpenSans-SemiBold.ttf";
@@ -57,8 +57,8 @@ public class Kontrol {
 	    
 	    //image
 	    ImageIcon bBesar1 = new ImageIcon(getClass().getResource("/b-240x60.png"));
-	    ImageIcon bBesar2 = new ImageIcon(getClass().getResource("/b-240x60-2.png"));
-	    ImageIcon bKecil1 = new ImageIcon(getClass().getResource("/b-200x50.png"));
+//	    ImageIcon bBesar2 = new ImageIcon(getClass().getResource("/b-240x60-2.png"));
+//	    ImageIcon bKecil1 = new ImageIcon(getClass().getResource("/b-200x50.png"));
 		
 		level = "Easy";
 		textIng = new JLabel("");
@@ -119,18 +119,42 @@ public class Kontrol {
 
 		
 	}
-	
+			
 	public Kata[] makeData() {
-		String noise[] = {"Kebisingan", "Suara", "Bunyi", "Keributan", "Kegaduhan"};
+		String noise[] = {"kebisingan", "suara", "bunyi", "keributan", "kegaduhan"};
+		String courage[] = {"keberanian", "keteguhan hati"};
+		String juvenile[] = {"muda", "remaja"};
+		String enchant[] = {"mempesona", "mengasyikkan", "memikat"};
+		String hill[] = {"tumpukan", "bukit", "timbunan"};
+		String deliberate[] = {"tidak tergesa-gesa", "tenang", "sengaja"};
+		String arouse[] = {"membangkitkan", "membangunkan", "menggugah"};
+		String illuminate[] = {"menerangi", "menyinari"};
+		String elucidate[] = {"menjelaskan", "menguraikan", "menerangkan"};
 		String sanity[] = {"Kewarasan", "Kesehatan", "Kesehatan jiwa", "Kesegaran"};
 		String lizard[] = {"Cicak", "Kadal"};
 		String bridge[] = {"Jembatan", "Batang", "Kuda-kuda", "Titian"};
-		//String chick[]
+		String carry[] = {"membawa", "mengangkat"};
+		String efficacy[] = {"kemanjuran", "kemujaraban"};
+		String post[] = {"pos", "tiang", "surat", "memasang"};
+		String underlying[] = {"pokok", "dasar"};
+		
 		Kata kata[] = {
 				new Kata("Noise", noise),
 				new Kata("Sanity", sanity),
 				new Kata("Lizard", lizard),
-				new Kata("Bridge", bridge)
+				new Kata("Bridge", bridge),
+				new Kata("Courage", courage),
+				new Kata("Juvenile", juvenile),
+				new Kata("Hill", hill),
+				new Kata("Deliberate", deliberate),
+				new Kata("Arouse", arouse),
+				new Kata("Illuminate", illuminate),
+				new Kata("Elucidate", elucidate),
+				new Kata("Carry", carry),
+				new Kata("Eefficacy", efficacy),
+				new Kata("Post", post),
+				new Kata("Underlying", underlying),
+				new Kata("Enchant", enchant)
 		};
 		
 		return kata;
