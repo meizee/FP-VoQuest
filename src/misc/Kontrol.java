@@ -56,27 +56,29 @@ public class Kontrol {
 	    Font font2 = Font.createFont(Font.TRUETYPE_FONT, is2);
 	    
 	    //image
-	    ImageIcon imageForOne = new ImageIcon(getClass().getResource("/buttons.png"));
+	    ImageIcon bBesar1 = new ImageIcon(getClass().getResource("/b-240x60.png"));
+	    ImageIcon bBesar2 = new ImageIcon(getClass().getResource("/b-240x60-2.png"));
+	    ImageIcon bKecil1 = new ImageIcon(getClass().getResource("/b-200x50.png"));
 		
 		level = "Easy";
 		textIng = new JLabel("");
 		textIng.setFont(font2.deriveFont(Font.BOLD, 30f));
 		
 		
-		button = new JButton("Mulai");
+		button = new JButton("Mulai", bBesar1);
 		button.setVerticalTextPosition(JButton.CENTER);
 		button.setHorizontalTextPosition(JButton.CENTER);
-//		button.setBorderPainted(false);
-//		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setContentAreaFilled(false);
 		button.setFont(font2.deriveFont(Font.BOLD, 20f));
 		button.addActionListener (new Action1());
 		//button.setPreferredSize(new Dimension(240, 60));
 		
-		button2 = new JButton("");
+		button2 = new JButton("", bBesar1);
 		button2.setVerticalTextPosition(JButton.CENTER);
 		button2.setHorizontalTextPosition(JButton.CENTER);
-//		button2.setBorderPainted(false);
-//		button2.setContentAreaFilled(false);
+		button2.setBorderPainted(false);
+		button2.setContentAreaFilled(false);
 		button2.setFont(font2.deriveFont(Font.BOLD, 20f));
 		button2.addActionListener (new Action2());
 		//button2.setPreferredSize(new Dimension(240, 60));
@@ -85,28 +87,30 @@ public class Kontrol {
 		this.nilai = false;
 		this.gameScreen = gamescreen;
 		
-		button3 = new JButton("Level");
+		button3 = new JButton("Level", bBesar1);
 		button3.setVerticalTextPosition(JButton.CENTER);
 		button3.setHorizontalTextPosition(JButton.CENTER);
-//		button3.setBorderPainted(false);
-//		button3.setContentAreaFilled(false);
+		button3.setBorderPainted(false);
+		button3.setContentAreaFilled(false);
 		button3.setFont(font2.deriveFont(Font.BOLD, 20f));
 		button3.addActionListener (new Action3());
 		//button3.setPreferredSize(new Dimension(240, 60));
 		
-		lEasy = new JButton("Mudah");
+		lEasy = new JButton("Mudah", bBesar1);
 		lEasy.setVerticalTextPosition(JButton.CENTER);
 		lEasy.setHorizontalTextPosition(JButton.CENTER);
-//		lEasy.setBorderPainted(false);
-//		lEasy.setContentAreaFilled(false);
+		lEasy.setBorderPainted(false);
+		lEasy.setContentAreaFilled(false);
+		lEasy.setFont(font2.deriveFont(Font.BOLD, 20f));
 		lEasy.addActionListener (new Action3());
 		//lEasy.setPreferredSize(new Dimension(240, 60));
 		
-		lHard = new JButton("Susah");
+		lHard = new JButton("Susah", bBesar1);
 		lHard.setVerticalTextPosition(JButton.CENTER);
 		lHard.setHorizontalTextPosition(JButton.CENTER);
-//		lHard.setBorderPainted(false);
-//		lHard.setContentAreaFilled(false);
+		lHard.setBorderPainted(false);
+		lHard.setContentAreaFilled(false);
+		lHard.setFont(font2.deriveFont(Font.BOLD, 20f));
 		lHard.addActionListener (new Action3());
 		//lHard.setPreferredSize(new Dimension(240, 60));
 		
@@ -184,9 +188,9 @@ public class Kontrol {
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
 				gameScreen.rButton(button);
-				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
-				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);
-				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 200, 50);
+				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 240, 60);
 				UpdateTombol();
 				gameScreen.releaseUpAction();
 			}
@@ -195,9 +199,9 @@ public class Kontrol {
 				gameScreen.rButton(button3);
 				gameScreen.rButton(lEasy);
 				gameScreen.rButton(lHard);
-				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 200, 50);
-				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 200, 50);
-				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 200, 50);
+				gameScreen.addButton(button, SCREEN_WIDTH/2 - 240, SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addButton(button2, SCREEN_WIDTH/2 , SCREEN_HEIGHT/3, 240, 60);
+				gameScreen.addLabel(textIng, SCREEN_WIDTH/2 - 60, SCREEN_HEIGHT/4, 240, 60);
 				UpdateTombol();
 				gameScreen.releaseUpAction();
 			}
