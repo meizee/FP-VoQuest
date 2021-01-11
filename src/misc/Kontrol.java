@@ -64,7 +64,6 @@ public class Kontrol {
 		textIng = new JLabel("");
 		textIng.setFont(font2.deriveFont(Font.BOLD, 30f));
 		
-		
 		button = new JButton("Mulai", bBesar1);
 		button.setVerticalTextPosition(JButton.CENTER);
 		button.setHorizontalTextPosition(JButton.CENTER);
