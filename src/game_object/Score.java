@@ -145,15 +145,15 @@ public class Score {
 		for(int i = 0; i < SCORE_LENGTH; i++) {
 			// this if needed to make blinking animation when score increased by 100
 			if((!((int)score >= 12 && (int)score % 100 <= 12) || (int)score % 3 == 0) || gameScreen.getGameState() == GameState.GAME_STATE_OVER)
-				g2d.drawImage(cropImage(numbers, scoreArray[SCORE_LENGTH - i - 1]), CURRENT_SCORE_X + i * NUMBER_WIDTH, SCORE_Y, null);
+				g2d.drawImage(cropImage(numbers, scoreArray[SCORE_LENGTH - i - 1]), CURRENT_SCORE_X + i * NUMBER_WIDTH - 20, SCORE_Y, null);
 		}
 		if(hiScore > 0) {
 			int hiScoreArray[] = scoreToArray(hiScore);
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
 			for(int i = 0; i < SCORE_LENGTH; i++) {
-				g2d.drawImage(cropImage(numbers, hiScoreArray[SCORE_LENGTH - i - 1]), HI_SCORE_X + i * NUMBER_WIDTH, SCORE_Y, null);
+				g2d.drawImage(cropImage(numbers, hiScoreArray[SCORE_LENGTH - i - 1]), HI_SCORE_X + i * NUMBER_WIDTH - 20, SCORE_Y, null);
 			}
-			g2d.drawImage(hi, HI_X, SCORE_Y, null);
+			g2d.drawImage(hi, HI_X + 50, SCORE_Y, null);
 			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
 		}
 	}
