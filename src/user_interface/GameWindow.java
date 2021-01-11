@@ -10,7 +10,7 @@ public class GameWindow extends JFrame {
 	private GameScreen gameScreen;
 	
 	public GameWindow() throws Exception {
-		super("Dino");
+		super("VoQuest Game");
 		setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
