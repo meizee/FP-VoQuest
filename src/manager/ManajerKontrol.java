@@ -15,7 +15,7 @@ public class ManajerKontrol {
 	public boolean update() {
 		if(kontrol.getNilai()) {
 			gameScreen.pressUpAction();
-			System.out.println("Press up");
+//			System.out.println("Press up");
 			return true;
 		}
 		

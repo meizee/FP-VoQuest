@@ -20,7 +20,7 @@ public class Tanah {
 	
 	public Tanah(GameScreen gameScreen) {
 		this.gameScreen = gameScreen;
-		tanah = getImage("resources/3.png");
+		tanah = getImage("resources/2.png");
 		y = SCREEN_HEIGHT - tanah.getHeight() - 4;
 		tanahWidthScaled = tanah.getWidth();
 		tanahHeightScaled = tanah.getHeight();
