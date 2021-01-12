@@ -34,7 +34,7 @@ public class GameScreen extends JPanel implements Runnable {
 	private static final double DIFFICULTY_INC = -0.0002;
 	
 	public static final double GRAVITY = 0.4;
-	public static final int GROUND_Y = 480;
+	public static final int GROUND_Y = 500;
 	public static final double SPEED_Y = -12;
 	
 	private final int FPS = 100;
