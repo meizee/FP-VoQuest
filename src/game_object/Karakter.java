@@ -5,21 +5,20 @@ import static user_interface.GameScreen.GROUND_Y;
 import static user_interface.GameScreen.SPEED_Y;
 import static util.Resource.getImage;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import manager.SoundManager;
-import misc.Animation;
+import misc.Animasi;
 import misc.Kontrol;
 import misc.KarakterState;
 
 public class Karakter {
-	// values to subtract from x, y, width, height to get accurate hitbox
+	
 		private static final int[] HITBOX_LARI = {12, 26, -32, -42};
-		//private static final int[] HITBOX_LARI = {24, 52, -64, -84};
-//		private static final int[] HITBOX_DOWN_LARI = {24, 8, -60, -24};
+
 		
 		public static final double X = 120;
 		
@@ -35,27 +34,27 @@ public class Karakter {
 		private KarakterState karakterState;
 		private BufferedImage karakterLompat;
 		private BufferedImage karakterMati;
-		private Animation karakterLari;
-		private Animation karakterDownLari;
+		private Animasi karakterLari;
+		private Animasi karakterDownLari;
 		private SoundManager jumpSound;
 		
 		public Karakter(Kontrol kontrol) {
 			this.kontrol = kontrol;
-			karakterLari = new Animation(150);
-			karakterLari.addSprite(getImage("resources/kanan 0.png"));
-			karakterLari.addSprite(getImage("resources/kanan 1.png"));
-			karakterLari.addSprite(getImage("resources/kanan 2.png"));
-			karakterLari.addSprite(getImage("resources/kanan 3.png"));
-			karakterLari.addSprite(getImage("resources/kanan 4.png"));
-			karakterLari.addSprite(getImage("resources/kiri 0.png"));
-			karakterLari.addSprite(getImage("resources/kiri 0.png"));
-			karakterLari.addSprite(getImage("resources/kiri 1.png"));
-			karakterLari.addSprite(getImage("resources/kiri 2.png"));
-			karakterLari.addSprite(getImage("resources/kiri 3.png"));
-			karakterLari.addSprite(getImage("resources/kiri 4.png"));
-			karakterDownLari = new Animation(150);
-			karakterDownLari.addSprite(getImage("resources/kanan 0.png"));
-			karakterDownLari.addSprite(getImage("resources/kiri 0.png"));
+			karakterLari = new Animasi(150);
+			karakterLari.addPotonganGambar(getImage("resources/kanan 0.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kanan 1.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kanan 2.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kanan 3.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kanan 4.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kiri 0.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kiri 0.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kiri 1.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kiri 2.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kiri 3.png"));
+			karakterLari.addPotonganGambar(getImage("resources/kiri 4.png"));
+			karakterDownLari = new Animasi(150);
+			karakterDownLari.addPotonganGambar(getImage("resources/kanan 0.png"));
+			karakterDownLari.addPotonganGambar(getImage("resources/kiri 0.png"));
 			karakterLompat = getImage("resources/kanan 2.png");
 			karakterMati = getImage("resources/kiri 2.png");
 			jumpSound = new SoundManager("resources/jump.wav");
@@ -84,9 +83,9 @@ public class Karakter {
 				y += speedY;
 				if(y < jumpMaxY)
 					jumpMaxY = y;
-				if(y + speedY >= GROUND_Y - karakterLari.getSprite().getHeight()) {
+				if(y + speedY >= GROUND_Y - karakterLari.getPotonganGambar().getHeight()) {
 					speedY = 0;
-					y = GROUND_Y - karakterLari.getSprite().getHeight();
+					y = GROUND_Y - karakterLari.getPotonganGambar().getHeight();
 					break;
 				}
 			}
@@ -107,17 +106,17 @@ public class Karakter {
 		public void updatePosition() {
 			if(y < maxY)
 				maxY = y;
-			karakterLari.updateSprite();
-			karakterDownLari.updateSprite();
+			karakterLari.updatePotonganGambar();
+			karakterDownLari.updatePotonganGambar();
 			switch (karakterState) {
 			case KARAKTER_LARI:
-				y = GROUND_Y - karakterLari.getSprite().getHeight();
+				y = GROUND_Y - karakterLari.getPotonganGambar().getHeight();
 				maxY = y;
 				break;
 			case KARAKTER_LOMPAT:
-				if(y + speedY >= GROUND_Y - karakterLari.getSprite().getHeight()) {
+				if(y + speedY >= GROUND_Y - karakterLari.getPotonganGambar().getHeight()) {
 					speedY = 0;
-					y = GROUND_Y - karakterLari.getSprite().getHeight();
+					y = GROUND_Y - karakterLari.getPotonganGambar().getHeight();
 					karakterState = KarakterState.KARAKTER_LARI;
 				} else if(kontrol.getNilai()) {
 					speedY += GRAVITY;
@@ -139,7 +138,7 @@ public class Karakter {
 		}
 		
 		public void jump() {
-			if(y == GROUND_Y - karakterLari.getSprite().getHeight()) {
+			if(y == GROUND_Y - karakterLari.getPotonganGambar().getHeight()) {
 				jumpSound.play();
 				speedY = SPEED_Y;
 				y += speedY;
@@ -160,7 +159,7 @@ public class Karakter {
 		public void draw(Graphics g) {
 			switch (karakterState) {
 			case KARAKTER_LARI:
-				g.drawImage(karakterLari.getSprite(), (int)X, (int)y, null);
+				g.drawImage(karakterLari.getPotonganGambar(), (int)X, (int)y, null);
 				break;
 			case KARAKTER_LOMPAT:
 				g.drawImage(karakterLompat, (int)X, (int)y, null);
@@ -173,10 +172,10 @@ public class Karakter {
 			}
 		}
 		
-		public void drawHitbox(Graphics g) {
-			g.setColor(Color.GREEN);
-			g.drawRect(getHitbox().x, getHitbox().y, getHitbox().width, getHitbox().height);
-		}
+//		public void drawHitbox(Graphics g) {
+//			g.setColor(Color.GREEN);
+//			g.drawRect(getHitbox().x, getHitbox().y, getHitbox().width, getHitbox().height);
+//		}
 		
 }
 

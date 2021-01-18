@@ -13,17 +13,16 @@ public class Tanah {
 	private GameScreen gameScreen;
 	private double x = 0;
 	private int y;
-	// here i made tanah 2x times bigger
-	private int tanahWidthScaled;
-	private int tanahHeightScaled;
+	private int tanahWidth;
+	private int tanahHeight;
 	private BufferedImage tanah;
 	
 	public Tanah(GameScreen gameScreen) {
 		this.gameScreen = gameScreen;
 		tanah = getImage("resources/2.png");
 		y = SCREEN_HEIGHT - tanah.getHeight() - 4;
-		tanahWidthScaled = tanah.getWidth();
-		tanahHeightScaled = tanah.getHeight();
+		tanahWidth = tanah.getWidth();
+		tanahHeight = tanah.getHeight();
 	}
 	
 	public void updatePosition() {
@@ -36,12 +35,12 @@ public class Tanah {
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(tanah, (int)x, y, tanahWidthScaled, tanahHeightScaled, null);
+		g.drawImage(tanah, (int)x, y, tanahWidth, tanahHeight, null);
 		
-		if(tanahWidthScaled - SCREEN_WIDTH <= (int)Math.abs(x))
-			g.drawImage(tanah, (int)(tanahWidthScaled + x), y, tanahWidthScaled, tanahHeightScaled, null);
+		if(tanahWidth - SCREEN_WIDTH <= (int)Math.abs(x))
+			g.drawImage(tanah, (int)(tanahWidth + x), y, tanahWidth, tanahHeight, null);
 		
-		if(tanahWidthScaled <= (int)Math.abs(x))
+		if(tanahWidth <= (int)Math.abs(x))
 			x = 0;
 	}
 }

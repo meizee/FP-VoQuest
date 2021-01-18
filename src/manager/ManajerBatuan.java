@@ -6,7 +6,7 @@ import game_object.Batuan;
 import user_interface.GameScreen;
 
 public class ManajerBatuan {
-	// value by which chance of creating new enemy increasing
+	// nilai untuk kesempatan menambah batu baru
 		private static final double PERSENTASE_PERTAMBAHAN = 0.0001;
 		private static final double PENGURANGAN_JARAK = -0.001;
 		private static final int JARAK_MINIMUM = 5000;
@@ -59,10 +59,10 @@ public class ManajerBatuan {
 			
 		}
 		
-		public void drawHitbox(Graphics g) {
-			batuan.drawHitbox(g);
-			
-		}
+//		public void drawHitbox(Graphics g) {
+//			batuan.drawHitbox(g);
+//			
+//		}
 		
 	}
 

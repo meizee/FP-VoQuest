@@ -4,7 +4,6 @@ import static user_interface.GameScreen.GROUND_Y;
 import static user_interface.GameWindow.SCREEN_WIDTH;
 import static util.Resource.getImage;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -30,10 +29,10 @@ public class Batuan {
 		
 	}
 	
-	// number to calculate hitbox of batuan
+	// hitbox batuan
 	private static final double HITBOX_X = 2.7;
 	private static final int HITBOX_Y = 25;
-	// number of batu sprites
+	// banyak gambar batu
 	private static final int N_BATUAN = 2;
 	
 	private ManajerBatuan eManager;
@@ -68,7 +67,7 @@ public class Batuan {
 	
 	public boolean createBatuan() {
 		if(Math.random() * 100 < eManager.getPersentaseBatuan()) {
-			// Math random to get number of batuan in a group
+			
 			for(int i = 0, nBatuan = (int)(Math.random() + 1); i < nBatuan; i++) {
 				BufferedImage batuImage = getImage("resources/batu-" + (int)(Math.random() * N_BATUAN + 1) + ".png");
 				int x = SCREEN_WIDTH;
@@ -82,11 +81,11 @@ public class Batuan {
 		return false;
 	}
 	
-	public boolean isCollision(Rectangle dinoHitBox) {
+	public boolean isCollision(Rectangle karakterHitBox) {
 		for(Iterator<Batu> i = batuan.iterator(); i.hasNext();) {
 			Batu batu = i.next();
 			Rectangle batuHitBox = getHitbox(batu);
-			if(batuHitBox.intersects(dinoHitBox))
+			if(batuHitBox.intersects(karakterHitBox))
 				return true;
 		}
 		return false;
@@ -110,14 +109,14 @@ public class Batuan {
 		}
 	}
 	
-	public void drawHitbox(Graphics g) {
-		g.setColor(Color.RED);
-		for(Iterator<Batu> i = batuan.iterator(); i.hasNext();) {
-			Batu batu = i.next();
-			Rectangle batuHitBox = getHitbox(batu);
-			g.drawRect(batuHitBox.x, batuHitBox.y, (int)batuHitBox.getWidth(), (int)batuHitBox.getHeight());
-		}
-	}
+//	public void drawHitbox(Graphics g) {
+//		g.setColor(Color.RED);
+//		for(Iterator<Batu> i = batuan.iterator(); i.hasNext();) {
+//			Batu batu = i.next();
+//			Rectangle batuHitBox = getHitbox(batu);
+//			g.drawRect(batuHitBox.x, batuHitBox.y, (int)batuHitBox.getWidth(), (int)batuHitBox.getHeight());
+//		}
+//	}
 	
 }
 

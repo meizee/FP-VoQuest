@@ -27,14 +27,13 @@ import misc.GameState;
 
 public class Score {
 	
-	// value by which score is increasing
+	// nilai dari skor yg bertambah
 	private static final double SCORE_INC = 0.1;
-	// length of score on screen, max 99999 but i dont think that anyone will play that long so.....
 	private static final int SCORE_LENGTH = 5;
-	// width and height of single number on sprite
+	// lebar dan tinggi setiap angka
 	private static final int NUMBER_WIDTH = 20;
 	private static final int NUMBER_HEIGHT = 21;
-	// here i calculate position of score on screen
+	// posisi score di screen
 	private static final int CURRENT_SCORE_X = SCREEN_WIDTH - (SCORE_LENGTH * NUMBER_WIDTH + SCREEN_WIDTH / 100);
 	private static final int HI_SCORE_X = SCREEN_WIDTH - (SCORE_LENGTH * NUMBER_WIDTH + SCREEN_WIDTH / 100) * 2;
 	private static final int HI_X = SCREEN_WIDTH - ((SCORE_LENGTH * NUMBER_WIDTH + SCREEN_WIDTH / 100) * 2 + NUMBER_WIDTH * 2 + SCREEN_WIDTH / 100) - 100;
@@ -64,12 +63,12 @@ public class Score {
 	
 	public void scoreUp() {
 		score += SCORE_INC;
-		// play sound every 100 points
+		// play sound setiap 100 poin
 		if((int)score != 0 && score % 100 <= 0.1)
 			scoreUpSound.play();
 	}
 	
-	// getting single number from sprite
+	// mendapatkan satu gambar angka dari gambar
 	private BufferedImage cropImage(BufferedImage image, int number) {
 		return image.getSubimage(number * NUMBER_WIDTH, 0, NUMBER_WIDTH, NUMBER_HEIGHT);
 	}
@@ -88,14 +87,13 @@ public class Score {
 	public void writeScore() {
 		if(score > hiScore) {
 			File file;
-			// here i check if program is running from jar file so that i know where to store best results
-			// again because of that i use here ClassLoader
+			
 			if(isJar())
 				file = new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + scoreFileName);
 			else
 				file = scoreFile;
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-				// just format of results, storing here result, date, player, where player is just Dino because i dont have any friends.....
+				
 				bw.write(String.format("result=%s,date=%s,player=%s\n", Integer.toString((int)score), new SimpleDateFormat("yyyyMMdd_HHmmss")
 						.format(Calendar.getInstance().getTime()), "User-1"));
 				bw.close();
@@ -106,11 +104,11 @@ public class Score {
 	}
 	
 	private void readScore() {
-		// another ClassLoader to know from where to read best scores
+
 		if(scoreFile.exists() || new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + scoreFileName).exists()) {
 			String line = "";
 			File file;
-			// again jar file check
+			// jar file check
 			if(isJar())
 				file = new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + scoreFileName);
 			else
@@ -143,7 +141,7 @@ public class Score {
 		Graphics2D g2d = (Graphics2D)g;
 		int scoreArray[] = scoreToArray(score);
 		for(int i = 0; i < SCORE_LENGTH; i++) {
-			// this if needed to make blinking animation when score increased by 100
+			// blink animasi saat skor bertambah 100 poin
 			if((!((int)score >= 12 && (int)score % 100 <= 12) || (int)score % 3 == 0) || gameScreen.getGameState() == GameState.GAME_STATE_OVER)
 				g2d.drawImage(cropImage(numbers, scoreArray[SCORE_LENGTH - i - 1]), CURRENT_SCORE_X + i * NUMBER_WIDTH - 20, SCORE_Y, null);
 		}

@@ -44,14 +44,13 @@ public class GameScreen extends JPanel implements Runnable {
 	private GameState gameState = GameState.GAME_STATE_START;
 	private int introCountdown = 1000;
 	private boolean introJump = true;
-	//private boolean showHitboxes = false;
+
 	private boolean collisions = true;
 	
 	private Kontrol kontrol;
 	private Score score;
 	private Karakter karakter;
 	private Tanah tanah;
-	//private Clouds clouds;
 	private ManajerBatuan eManager;
 	private SoundManager gameOverSound;
 	private ManajerKontrol cManager;;
@@ -105,7 +104,7 @@ public class GameScreen extends JPanel implements Runnable {
 			if(waitingTime < 0)
 				waitingTime = 1;
 			SoundManager.WAITING_TIME = waitingTime;
-			// little pause to not start new game if you are spamming your keys
+			// pause
 			if(gameState == GameState.GAME_STATE_OVER) {
 				kontrol.button.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
 				kontrol.setButton(kontrol.button, "Mulai Lagi");
@@ -137,7 +136,7 @@ public class GameScreen extends JPanel implements Runnable {
 		this.gameState = state;
 	}
 
-	// update all entities positions
+	// update posisi objek
 	private void updateFrame() {
 		switch (gameState) {
 		case GAME_STATE_INTRO:
@@ -159,7 +158,6 @@ public class GameScreen extends JPanel implements Runnable {
 			speedX += DIFFICULTY_INC;
 			karakter.updatePosition();
 			tanah.updatePosition();
-			//clouds.updatePosition();
 			eManager.updatePosisi();
 			if(collisions && eManager.isCollision(karakter.getHitbox())) {
 				gameState = GameState.GAME_STATE_OVER;

@@ -17,8 +17,6 @@ import user_interface.GameScreen;
 
 public class Kontrol {
 	private int jawBenar;
-//	private JFrame frame;
-//	public JPanel panel;
 	private Kata data_kata[];
 	private boolean nilai;
 	private GameScreen gameScreen;
@@ -57,8 +55,6 @@ public class Kontrol {
 	    
 	    //image
 	    ImageIcon bBesar1 = new ImageIcon(getClass().getResource("/b-240x60.png"));
-//	    ImageIcon bBesar2 = new ImageIcon(getClass().getResource("/b-240x60-2.png"));
-//	    ImageIcon bKecil1 = new ImageIcon(getClass().getResource("/b-200x50.png"));
 		
 		level = "Easy";
 		textIng = new JLabel("");
@@ -138,20 +134,20 @@ public class Kontrol {
 		String underlying[] = {"pokok", "dasar"};
 		
 		Kata kata[] = {
-				new Kata("Noise", noise),
+				new Kata(" Noise", noise),
 				new Kata("Sanity", sanity),
 				new Kata("Lizard", lizard),
 				new Kata("Bridge", bridge),
 				new Kata("Courage", courage),
 				new Kata("Juvenile", juvenile),
-				new Kata("Hill", hill),
+				new Kata(" Hill", hill),
 				new Kata("Deliberate", deliberate),
 				new Kata("Arouse", arouse),
 				new Kata("Illuminate", illuminate),
 				new Kata("Elucidate", elucidate),
-				new Kata("Carry", carry),
-				new Kata("Eefficacy", efficacy),
-				new Kata("Post", post),
+				new Kata(" Carry", carry),
+				new Kata("Efficacy", efficacy),
+				new Kata(" Post", post),
 				new Kata("Underlying", underlying),
 				new Kata("Enchant", enchant)
 		};
