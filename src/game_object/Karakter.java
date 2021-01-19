@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import manager.SoundManager;
+import manager.ManajerSound;
 import misc.Animasi;
 import misc.Kontrol;
 import misc.KarakterState;
@@ -35,8 +35,7 @@ public class Karakter {
 		private BufferedImage karakterLompat;
 		private BufferedImage karakterMati;
 		private Animasi karakterLari;
-		private Animasi karakterDownLari;
-		private SoundManager jumpSound;
+		private ManajerSound jumpSound;
 		
 		public Karakter(Kontrol kontrol) {
 			this.kontrol = kontrol;
@@ -52,12 +51,9 @@ public class Karakter {
 			karakterLari.addPotonganGambar(getImage("resources/kiri 2.png"));
 			karakterLari.addPotonganGambar(getImage("resources/kiri 3.png"));
 			karakterLari.addPotonganGambar(getImage("resources/kiri 4.png"));
-			karakterDownLari = new Animasi(150);
-			karakterDownLari.addPotonganGambar(getImage("resources/kanan 0.png"));
-			karakterDownLari.addPotonganGambar(getImage("resources/kiri 0.png"));
 			karakterLompat = getImage("resources/kanan 2.png");
 			karakterMati = getImage("resources/kiri 2.png");
-			jumpSound = new SoundManager("resources/jump.wav");
+			jumpSound = new ManajerSound("resources/jump.wav");
 			jumpSound.startThread();
 			y = GROUND_Y - karakterLompat.getHeight();
 			maxY = y;
@@ -107,7 +103,6 @@ public class Karakter {
 			if(y < maxY)
 				maxY = y;
 			karakterLari.updatePotonganGambar();
-			karakterDownLari.updatePotonganGambar();
 			switch (karakterState) {
 			case KARAKTER_LARI:
 				y = GROUND_Y - karakterLari.getPotonganGambar().getHeight();

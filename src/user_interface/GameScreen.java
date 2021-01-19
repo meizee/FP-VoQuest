@@ -20,7 +20,7 @@ import game_object.Tanah;
 import game_object.Score;
 import manager.ManajerKontrol;
 import manager.ManajerBatuan;
-import manager.SoundManager;
+import manager.ManajerSound;
 import misc.Kontrol;
 import misc.KarakterState;
 import misc.GameState;
@@ -52,7 +52,7 @@ public class GameScreen extends JPanel implements Runnable {
 	private Karakter karakter;
 	private Tanah tanah;
 	private ManajerBatuan eManager;
-	private SoundManager gameOverSound;
+	private ManajerSound gameOverSound;
 	private ManajerKontrol cManager;;
 	
 	public GameScreen(JFrame jframe) throws Exception {
@@ -66,7 +66,7 @@ public class GameScreen extends JPanel implements Runnable {
 		tanah = new Tanah(this);
 
 		eManager = new ManajerBatuan(this);
-		gameOverSound = new SoundManager("resources/dead.wav");
+		gameOverSound = new ManajerSound("resources/dead.wav");
 		gameOverSound.startThread();
 		setLayout(null);
 		kontrol.button.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);
@@ -103,7 +103,7 @@ public class GameScreen extends JPanel implements Runnable {
 			waitingTime = (int)((NS_PER_FRAME - (System.nanoTime() - prevFrameTime)) / 1_000_000);
 			if(waitingTime < 0)
 				waitingTime = 1;
-			SoundManager.WAITING_TIME = waitingTime;
+			ManajerSound.WAIT_TIME = waitingTime;
 			// pause
 			if(gameState == GameState.GAME_STATE_OVER) {
 				kontrol.button.setBounds(SCREEN_WIDTH/2 - 120, SCREEN_HEIGHT/3, 240, 60);

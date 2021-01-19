@@ -5,7 +5,6 @@ import user_interface.GameScreen;
 import static user_interface.GameWindow.SCREEN_HEIGHT;
 import static user_interface.GameWindow.SCREEN_WIDTH;
 import static util.Resource.getImage;
-import static util.Resource.isJar;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;
@@ -22,7 +21,7 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import manager.SoundManager;
+import manager.ManajerSound;
 import misc.GameState;
 
 public class Score {
@@ -44,7 +43,7 @@ public class Score {
 	private File scoreFile;
 	private BufferedImage hi;
 	private BufferedImage numbers;
-	private SoundManager scoreUpSound;
+	private ManajerSound scoreUpSound;
 	
 	private double score;
 	private int hiScore;
@@ -57,7 +56,7 @@ public class Score {
 		readScore();
 		hi = getImage("resources/hi.png");
 		numbers = getImage("resources/numbers.png");
-		scoreUpSound = new SoundManager("resources/scoreup.wav");
+		scoreUpSound = new ManajerSound("resources/scoreup.wav");
 		scoreUpSound.startThread();
 	}
 	
@@ -88,10 +87,7 @@ public class Score {
 		if(score > hiScore) {
 			File file;
 			
-			if(isJar())
-				file = new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + scoreFileName);
-			else
-				file = scoreFile;
+			file = scoreFile;
 			try(BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
 				
 				bw.write(String.format("result=%s,date=%s,player=%s\n", Integer.toString((int)score), new SimpleDateFormat("yyyyMMdd_HHmmss")
@@ -108,11 +104,8 @@ public class Score {
 		if(scoreFile.exists() || new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + scoreFileName).exists()) {
 			String line = "";
 			File file;
-			// jar file check
-			if(isJar())
-				file = new File(ClassLoader.getSystemClassLoader().getResource("").getPath() + scoreFileName);
-			else
-				file = scoreFile;
+
+			file = scoreFile;
 			if(file.exists()) {				
 				try(BufferedReader br =  new BufferedReader(new FileReader(file))) {
 					while((line = br.readLine()) != null) {
