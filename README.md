@@ -26,4 +26,4 @@ Berikut adalah demo dari game VoQuest
 
 ### Versi lanjutan
 
-Versi selanjutnya dikembangkan VoQuest dalam bentuk 3D, yang bisa diliat di: [{VoQuest 3D}](https://github.com/mufis-coder/FP-GK-D07-2021)
+Versi selanjutnya dikembangkan VoQuest dalam bentuk 3D, yang bisa diliat di: [VoQuest 3D](https://github.com/mufis-coder/FP-GK-D07-2021)
