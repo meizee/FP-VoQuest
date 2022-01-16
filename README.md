@@ -22,8 +22,8 @@ Pada game ini, karakter harus menghindari rintangan yang ada di depannya. Cara m
 
 Berikut adalah demo dari game VoQuest
 
-![alt text]({https://github.com/meizee/FP-VoQuest/blob/main/doc/gif/demo-VoQuest.gif}) <br />
+![alt text](https://github.com/meizee/FP-VoQuest/blob/main/doc/gif/demo-VoQuest.gif) <br />
 
 ### Versi lanjutan
 
-Versi selanjutnya dikembangkan VoQuest dalam bentuk 3D, yang bisa diliat di: [{VoQuest 3D}]({https://github.com/mufis-coder/FP-GK-D07-2021})
+Versi selanjutnya dikembangkan VoQuest dalam bentuk 3D, yang bisa diliat di: [{VoQuest 3D}](https://github.com/mufis-coder/FP-GK-D07-2021)
